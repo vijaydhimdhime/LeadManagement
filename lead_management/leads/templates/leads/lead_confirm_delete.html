@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mx-auto mt-10">
+        <h1 class="text-2xl font-bold text-red-600 mb-4">Delete Lead</h1>
+        <p class="mb-6">Are you sure you want to delete <strong>{{ lead.first_name }} {{ lead.last_name }}</strong>? This action cannot be undone.</p>
+        <form method="post" class="flex items-center gap-4">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                Confirm Delete
+            </button>
+            <a href="{% url 'lead_list' %}" class="bg-gray-300 text-black px-4 py-2 rounded hover:bg-gray-400">
+                Cancel
+            </a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ form.instance.pk|default:"Create Lead" }}</title>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+    <div class="container mx-auto mt-10">
+        <h1 class="text-2xl font-bold mb-4">
+            {{ form.instance.pk|default:"Create Lead" }}
+        </h1>
+        <form method="post" class="bg-green-300 p-6 rounded-lg shadow-md max-w-lg">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                    Save
+                </button>
+                <a href="{% url 'lead_list' %}" class="text-gray-500 hover:underline">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+
+<script>
+    $(document).ready(function() {
+        $('#leadTable').DataTable({
+            paging: true,       // Enable pagination
+            searching: true,    // Enable search functionality
+            ordering: true,     // Enable column-based sorting
+            pageLength: 10,     // Number of rows per page
+            lengthMenu: [5, 10, 25, 50], // Rows per page options
+        });
+    });
+</script>
+
+</html>
